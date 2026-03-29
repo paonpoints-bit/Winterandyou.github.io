@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>冬、背中、小宇宙</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1a18;
+      --paper: #f5f2eb;
+      --accent: #8b6f5e;
+      --light: #e8e2d6;
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Noto Serif JP', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* 背景のテクスチャ */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: 
+        radial-gradient(ellipse at 20% 80%, rgba(139,111,94,0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(139,111,94,0.06) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* ヘッダー・サイトタイトル */
+    .site-title {
+      font-family: 'Shippori Mincho', serif;
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      letter-spacing: 0.3em;
+      color: var(--accent);
+      position: fixed;
+      top: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      opacity: 0;
+      animation: fadeIn 1s ease 0.2s forwards;
+      white-space: nowrap;
+    }
+
+    /* メインのイラストエリア */
+    .illustration-area {
+      width: min(420px, 85vw);
+      aspect-ratio: 3/4;
+      position: relative;
+      opacity: 0;
+      animation: riseIn 1.2s ease 0.5s forwards;
+    }
+
+    /* ここにイラストのimgタグを入れてください */
+    .illustration-area img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* イラストがない間のプレースホルダー */
+    .illustration-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .placeholder-shape {
+      width: 160px;
+      height: 200px;
+      border: 1.5px solid var(--accent);
+      border-radius: 50% 50% 40% 40%;
+      position: relative;
+      opacity: 0.4;
+    }
+
+    .placeholder-shape::after {
+      content: '';
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 60px;
+      border: 1.5px solid var(--accent);
+      border-radius: 0 0 40px 40px;
+    }
+
+    .placeholder-text {
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      opacity: 0.6;
+      margin-top: 2rem;
+    }
+
+    /* ナビゲーション */
+    nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      padding: 0;
+      border-top: 1px solid var(--light);
+      background: rgba(245,242,235,0.92);
+      backdrop-filter: blur(8px);
+      opacity: 0;
+      animation: fadeIn 1s ease 1s forwards;
+    }
+
+    nav a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      max-width: 200px;
+      padding: 1.4rem 1rem;
+      text-decoration: none;
+      color: var(--ink);
+      font-family: 'Shippori Mincho', serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.25em;
+      transition: color 0.3s, background 0.3s;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+      background: rgba(139,111,94,0.04);
+    }
+
+    nav a:hover::after {
+      width: 60%;
+    }
+
+    /* 区切り線 */
+    nav a + a {
+      border-left: 1px solid var(--light);
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    @keyframes riseIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 480px) {
+      nav a {
+        font-size: 0.85rem;
+        padding: 1.2rem 0.5rem;
+        letter-spacing: 0.15em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <span class="site-title">冬、背中、小宇宙</span><!-- ← サイト名を変えてください -->
+
+  <div class="illustration-area">
+    <img src="illust/top.jpg" alt="しかちゃん">
+  </div>
+
+  <nav>
+    <a href="nikki.html">日記</a>
+    <a href="monogatari.html">物語</a>
+    <a href="radio.html">ラジオ</a>
+  </nav>
+
+</body>
+</html>
